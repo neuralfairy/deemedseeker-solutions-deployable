@@ -2,41 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Demandseeker AI Hunter Design System - Modern Purple & Electric Blue */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors */
+    --background: 220 15% 4%;
+    --foreground: 220 10% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 15% 6%;
+    --card-foreground: 220 10% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 15% 6%;
+    --popover-foreground: 220 10% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* AI Purple Theme */
+    --primary: 270 75% 60%;
+    --primary-foreground: 220 10% 95%;
+    --primary-glow: 270 85% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Electric Blue Accent */
+    --secondary: 200 100% 60%;
+    --secondary-foreground: 220 15% 4%;
+    --secondary-glow: 200 100% 70%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 220 10% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 65% 55%;
+    --accent-foreground: 220 10% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 10% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 270 75% 60%;
 
-    --radius: 0.5rem;
+    /* AI Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 75% 60%), hsl(200 100% 60%));
+    --gradient-secondary: linear-gradient(45deg, hsl(280 65% 55%), hsl(270 85% 70%));
+    --gradient-accent: linear-gradient(90deg, hsl(200 100% 60%), hsl(270 75% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 4%) 0%, hsl(270 35% 8%) 50%, hsl(200 50% 12%) 100%);
+    
+    /* Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    /* Shadows & Glows */
+    --shadow-primary: 0 25px 50px -12px hsl(270 75% 60% / 0.25);
+    --shadow-secondary: 0 25px 50px -12px hsl(200 100% 60% / 0.25);
+    --glow-primary: 0 0 40px hsl(270 75% 60% / 0.3);
+    --glow-secondary: 0 0 40px hsl(200 100% 60% / 0.3);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +119,136 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    background: var(--gradient-hero);
   }
+}
+
+@layer components {
+  /* AI-Powered Button Variants */
+  .btn-hero {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-[var(--shadow-primary)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+  
+  .btn-hero::before {
+    @apply absolute inset-0 bg-gradient-to-r from-primary-glow to-secondary-glow opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+  
+  .btn-hero:hover::before {
+    @apply opacity-20;
+  }
+
+  .btn-secondary {
+    @apply relative bg-card/50 backdrop-blur-sm border border-border text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-card hover:border-accent hover:text-accent hover:shadow-lg;
+  }
+
+  .btn-ghost {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+
+  /* Glass Card Effects */
+  .glass-card {
+    @apply bg-card/30 backdrop-blur-md border border-glass-border rounded-xl p-6 transition-all duration-300 hover:bg-card/40 hover:border-accent/30;
+  }
+
+  /* AI Glow Effects */
+  .ai-glow {
+    @apply relative;
+  }
+  
+  .ai-glow::after {
+    @apply absolute inset-0 rounded-inherit opacity-0 transition-opacity duration-500;
+    content: '';
+    background: var(--gradient-primary);
+    filter: blur(20px);
+    z-index: -1;
+  }
+  
+  .ai-glow:hover::after {
+    @apply opacity-30;
+  }
+
+  /* Animated Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+    background-size: 200% 100%;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  /* Floating Animation */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(270 75% 60% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(270 75% 60% / 0.6), 0 0 60px hsl(200 100% 60% / 0.3);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
 }
