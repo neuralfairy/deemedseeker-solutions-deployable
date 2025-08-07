@@ -149,7 +149,12 @@
 
   /* Glass Card Effects */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-glass-border rounded-xl p-6 transition-all duration-300 hover:bg-card/40 hover:border-accent/30;
+    @apply bg-card/30 backdrop-blur-md rounded-xl p-6 transition-all duration-300 hover:bg-card/40;
+    border: 1px solid var(--glass-border);
+  }
+  
+  .glass-card:hover {
+    border-color: hsl(var(--accent) / 0.3);
   }
 
   /* AI Glow Effects */
