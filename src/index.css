@@ -163,9 +163,10 @@
   }
   
   .ai-glow::after {
-    @apply absolute inset-0 rounded-inherit opacity-0 transition-opacity duration-500;
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
     content: '';
     background: var(--gradient-primary);
+    border-radius: inherit;
     filter: blur(20px);
     z-index: -1;
   }
